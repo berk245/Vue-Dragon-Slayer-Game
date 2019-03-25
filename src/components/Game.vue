@@ -1,35 +1,33 @@
 <template>
     <div>
-        <p>{{ avatars }}</p>
-        <button @click="showRules = !showRules">Rules</button>
-        <game-rules v-show="showRules"></game-rules>
-        <button @click="passData"></button>
+        <button @click="goBack">Go Back</button>
+        <h1>Game Page</h1>
+        <p>{{userName}}</p>
+        <p>{{userAvatar}}</p>
+        
     </div>
 </template>
 
 <script>
-import {eventBus} from "../main";
-import gameRules from './Rules.vue';
+import { eventBus } from '../main';
 
 export default {
-    data: function(){
+    data:function(){
         return{
-            avatars:'belki',
-            showRules: false,
-            passingData: "firstPage"
+            goingBack: 'firstPage'
         }
     },
-    components:{
-        gameRules: gameRules,
-    },
-    created(){
-        eventBus.$on("avatarSet", (avatar)=>{
-            this.avatars = avatar;
-    })
+    props:['userName',
+            'userAvatar'],
+    methods:{
+        goBack(){
+            eventBus.$emit("goingBack", this.goingBack);
+        }
     }
 
 }
 </script>
 
 <style>
+
 </style>

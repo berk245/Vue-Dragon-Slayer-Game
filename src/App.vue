@@ -1,20 +1,19 @@
 <template>
   <div>
     <div class="container">
-      <component :is="selectedComp">
+      <component :is="selectedComp" :userName='userName' :userAvatar='userAvatar'>
 
       </component>
-      <p>{{selectedComp}}</p>
-      <p>{{avatars}}</p>
     </div>
     <br>
-    <audio controls src="\src\assets\come.mp3" autoplay="true" loop></audio>
+    <!-- <audio controls src="\src\assets\come.mp3" autoplay="true" loop></audio>
+    -->
   </div>
   
 </template>
 
 <script>
-import firstPage from './components/First-Page.vue';
+import firstPage from './components/FirstPage.vue';
 import Rules from './components/Rules.vue';
 import GameAction from './components/Game.vue';
 import {eventBus} from './main';
@@ -23,7 +22,8 @@ export default {
   data: function(){
     return{
       selectedComp: "firstPage",
-      avatars: ''
+      userName: '',
+      userAvatar: ''
     }
   },
 
@@ -34,17 +34,15 @@ export default {
   },
 
   created(){
-    eventBus.$on("gameStarting",(newComponent)=>{
-      this.selectedComp = newComponent;
+    eventBus.$on("gameStarting",(incomingArray)=>{
+      this.userName = incomingArray[0];
+      this.userAvatar = incomingArray[1];
+      this.selectedComp = incomingArray[2];
     });
-    eventBus.$on("avatarSet", (avatar)=>{
-      this.avatars = avatar;
-    });
-    eventBus.$on("passingBy", (comp)=>{
+    eventBus.$on("goingBack", (comp)=>{
       this.selectedComp = comp;
     })
   }
-
 }
 </script>
 

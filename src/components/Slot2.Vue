@@ -1,11 +1,10 @@
 <template>
     <div>
-        These are the rules
+        <slot></slot>
     </div>
 </template>
 
 <script>
-import { eventBus  } from "../main";
 export default {
 
 }
