@@ -1,5 +1,6 @@
 <template>
   <div>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <div class="container">
       <component :is="selectedComp" :userName='userName' :userAvatar='userAvatar'>
 
@@ -14,7 +15,7 @@
 
 <script>
 import firstPage from './components/FirstPage.vue';
-import Rules from './components/Rules.vue';
+import gameRules from './components/Rules.vue';
 import GameAction from './components/Game.vue';
 import {eventBus} from './main';
 
@@ -29,7 +30,7 @@ export default {
 
   components:{
     firstPage: firstPage,
-    gameRules: Rules,
+    gameRules: gameRules,
     gameAction: GameAction,
   },
 
@@ -41,17 +42,36 @@ export default {
     });
     eventBus.$on("goingBack", (comp)=>{
       this.selectedComp = comp;
-    })
+    });
+    eventBus.$on("showRules", (comp)=>{
+      this.selectedComp = comp;
+    });
+    eventBus.$on("backToTheGame", (comp)=>{
+      this.selectedComp = comp;
+    });
   }
 }
 </script>
 
 <style scoped>
+   body{
+    width: 95vw;
+    height: 95vh;
+    text-align: center;
+    background: black;
+    font-family: 'Press Start 2P';
+  }
 
   .container{
+    margin: auto;
     border: .5px solid black;
-    width: 80vw;
-    height: 90vh;
+    width: 100%;
+    height: 100vh;
+    min-width: 500px;
+    text-align: center;
+    background: black;
+    color: bisque;
   }
+
 
 </style>
