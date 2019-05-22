@@ -1,6 +1,10 @@
 # monster-slayer
 
-> A Vue.js project
+--> This is an update on the initial dragon-slayer project. The game now has a little more complex methods/attacks than the initial one.
+
+--> Vue components, eventBus, Single Page Application Format are used.
+
+
 
 ## Build Setup
 
